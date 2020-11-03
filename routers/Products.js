@@ -11,7 +11,7 @@ router.get('/:id', async (request, response) => {
   const id = request.params.id;
   const product = await productsService.findById(id);
   try {
-    response.status(product ? 200 : 404).send(product);
+    product.length > 0 ? response.status( 200 ).send(product) : response.status( 404 ).send("Product not found")
   } catch (e) {
     response.status(500).send(e);
   }
@@ -32,7 +32,6 @@ router.put('/:id', async (request, response) => {
   const body = request.body;
   try {
     const result = await productsService.update(id, body);
-    console.log(result);
     response.status(result._id ? 200 : 400).send(result);
   } catch(e) {
     response.status(500).send(e);

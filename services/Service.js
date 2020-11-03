@@ -43,7 +43,7 @@ async function update(id, value) {
  */
 async function deleteById(id) {
   const filter = { 'id': id };
-  return update = await Product.deleteMany(filter)
+  return await Product.deleteMany(filter)
 }
 
 module.exports = {
